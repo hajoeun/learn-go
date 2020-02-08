@@ -10,7 +10,7 @@ GOOS=js GOARCH=wasm go build -o main.wasm
 ## Run Server
 
 ```bash
-go run index.go
+go run main.go
 # listening on ":8080"...
 ```
 
