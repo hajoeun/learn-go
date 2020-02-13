@@ -39,11 +39,11 @@ func sum5(numbers ...int) (total int) {
 }
 
 func main() {
-	total1 := sum1(1, 2, 3)
-	total2 := sum2([3]int{1, 2, 3})
-	total3 := sum3(1, 2, 3, 4, 5)
-	total4 := sum4(1, 2, 3, 4, 5)
-	total5 := sum5(1, 2, 3, 4, 5)
-
-	fmt.Println(total1, total2, total3, total4, total5)
+	fmt.Println(
+		sum1(1, 2, 3),
+		sum2([3]int{1, 2, 3}),
+		sum3(1, 2, 3, 4, 5),
+		sum4(1, 2, 3, 4, 5),
+		sum5(1, 2, 3, 4, 5),
+	)
 }
