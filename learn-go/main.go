@@ -3,19 +3,22 @@ package main
 import "fmt"
 
 func isEven(n int) (bool, int) {
-	if v := n % 2; v == 0 {
+	v := n % 2
+	switch {
+	case v == 0:
 		return true, v
-	} else {
+	default:
 		return false, v
 	}
 }
 
 func isOdd(n int) (bool, int) {
-	v := n % 2
-	if v == 0 {
+	switch v := n % 2; v {
+	case 0:
 		return false, v
+	default:
+		return true, v
 	}
-	return true, v
 }
 
 func main() {
