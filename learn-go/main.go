@@ -2,30 +2,26 @@ package main
 
 import "fmt"
 
-func isEven(n int) (bool, int) {
-	v := n % 2
-	switch {
-	case v == 0:
-		return true, v
-	default:
-		return false, v
-	}
-}
-
-func isOdd(n int) (bool, int) {
-	switch v := n % 2; v {
-	case 0:
-		return false, v
-	default:
-		return true, v
-	}
-}
-
 func main() {
-	number := 10
-	isEvenNumber, evenResult := isEven(number)
-	isOddNumber, oddResult := isOdd(number)
+	value := 10
+	address := &value
+	fmt.Println(value, address)
 
-	fmt.Println(isEvenNumber, evenResult)
-	fmt.Println(isOddNumber, oddResult)
+	fmt.Println(&value == address) // true
+	fmt.Println(&value, address)
+
+	// fmt.Println(&value == &address) // invalid operation: &value == &address (mismatched types *int and **int)
+	fmt.Println(&value, &address)
+
+	fmt.Println(value == *address) // true
+	fmt.Println(value, *address)
+
+	value = 20
+	fmt.Println(value, *address)
+
+	*address = 30
+	fmt.Println(value, *address)
+
+	// address = 40 // cannot use 40 (type int) as type *int in assignment
+	// fmt.Println(value, *address)
 }
