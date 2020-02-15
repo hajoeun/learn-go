@@ -3,25 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	value := 10
-	address := &value
-	fmt.Println(value, address)
+	array := [3]int{}
+	array[0] = 1
+	fmt.Println(array) // [1 0 0]
 
-	fmt.Println(&value == address) // true
-	fmt.Println(&value, address)
+	for i := range array {
+		array[i] = i + 10
+	}
+	fmt.Println(array) // [10 11 12]
 
-	// fmt.Println(&value == &address) // invalid operation: &value == &address (mismatched types *int and **int)
-	fmt.Println(&value, &address)
+	slice1 := []int{}
+	// slice1[2] = 30 // runtime error: index out of range [2] with length 0
+	fmt.Println(slice1)
 
-	fmt.Println(value == *address) // true
-	fmt.Println(value, *address)
+	slice2 := []int{1, 2, 3, 4, 5}
+	fmt.Println(slice2) // [1 2 3 4 5]
 
-	value = 20
-	fmt.Println(value, *address)
-
-	*address = 30
-	fmt.Println(value, *address)
-
-	// address = 40 // cannot use 40 (type int) as type *int in assignment
-	// fmt.Println(value, *address)
+	for i, v := range slice2 {
+		slice2[i] = v + 10
+	}
+	fmt.Println(slice2) // [11 12 13 14 15]
 }
