@@ -1,1 +1,1 @@
-# write-in-go
+# learn-go
