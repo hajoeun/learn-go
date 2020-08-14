@@ -1,8 +1,9 @@
-package main
+package slice
 
 import "fmt"
 
-func main() {
+// Slice function
+func Slice() {
 	array := [3]int{}
 	array[0] = 1
 	fmt.Println(array) // [1 0 0]
