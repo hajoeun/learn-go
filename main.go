@@ -3,15 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/joeunha/learn-go/accounts"
+	"github.com/joeunha/learn-go/syntax"
 )
 
 func main() {
-	account := accounts.NewAccount("joeun")
-	account.Deposit(10)
-	res := account.Withdraw(20)
-	if res != nil {
-		fmt.Println(res)
-	}
-	fmt.Println(account)
+	dict := syntax.Dictionary{}
+	dict["name"] = "joeun"
+	fmt.Println(dict["name"])
 }
