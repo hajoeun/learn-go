@@ -9,5 +9,12 @@ import (
 func main() {
 	dict := syntax.Dictionary{}
 	dict["name"] = "joeun"
-	fmt.Println(dict["name"])
+
+	value, err := dict.Search("age")
+
+	if err != nil {
+		fmt.Println(err, ":", value)
+	} else {
+		fmt.Println(value)
+	}
 }
