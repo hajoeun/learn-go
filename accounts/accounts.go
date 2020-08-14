@@ -11,3 +11,13 @@ func NewAccount(owner string) *account {
 
 	return &newAccount
 }
+
+// Deposit set amount
+func (a account) Deposit(amount int) {
+	a.balance += amount
+}
+
+// Balance return balance of account
+func (a account) Balance() int {
+	return a.balance
+}
