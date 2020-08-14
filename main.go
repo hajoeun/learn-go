@@ -13,5 +13,5 @@ func main() {
 	if res != nil {
 		fmt.Println(res)
 	}
-	fmt.Println(account.Balance())
+	fmt.Println(account)
 }
