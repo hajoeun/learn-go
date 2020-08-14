@@ -13,7 +13,7 @@ func NewAccount(owner string) *account {
 }
 
 // Deposit set amount
-func (a account) Deposit(amount int) {
+func (a *account) Deposit(amount int) {
 	a.balance += amount
 }
 
