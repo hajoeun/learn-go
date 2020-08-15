@@ -1,37 +1,32 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-
-	"github.com/joeunha/learn-go/syntax"
+	"net/http"
 )
 
 func main() {
-	dict := syntax.Dictionary{}
-	word := "name"
-	definition := "joeun"
-	err := dict.Add(word, definition)
-
-	if err != nil {
-		fmt.Println(err)
+	urls := []string{
+		"https://www.naver.com",
+		"https://www.youtube.com",
+		"https://www.banksalad.com",
+		"https://www.facebook.com",
+		"https://www.github.com",
 	}
 
-	result, _ := dict.Search(word)
-	fmt.Println(result)
-
-	err2 := dict.Update(word, "joeun ha")
-
-	if err2 != nil {
-		fmt.Println(err2, ":", word)
-	} else {
-		result2, _ := dict.Search(word)
-		fmt.Println(result2)
+	for _, url := range urls {
+		hitURL(url)
 	}
+}
 
-	dict.Delete(word)
-	result, err3 := dict.Search(word)
+var errRequestFailed = errors.New("Request Failed")
 
-	if err3 != nil {
-		fmt.Println(err3, ":", word)
+func hitURL(url string) error {
+	fmt.Println("Checking:", url)
+	resp, err := http.Get(url)
+	if err == nil || resp.StatusCode >= 400 {
+		return errRequestFailed
 	}
+	return nil
 }
