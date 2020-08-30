@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -12,10 +13,12 @@ func main() {
 		go isPerson(person, channel)
 	}
 	for i := 0; i < len(people); i++ {
-		fmt.Println(<-channel)
+		fmt.Println("wating for ", i)
+		fmt.Println(<-channel) // blocking operation
 	}
 }
 
 func isPerson(person string, channel chan string) {
+	time.Sleep(time.Second * 2)
 	channel <- person + "'s send from channel"
 }
