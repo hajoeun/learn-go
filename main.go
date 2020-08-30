@@ -18,9 +18,9 @@ func main() {
 }
 
 func isPerson(person string, channel chan bool) {
-	time.Sleep(time.Second * 5)
 
 	if person == "foo" {
+		time.Sleep(time.Second * 5)
 		channel <- true
 	} else {
 		channel <- false
