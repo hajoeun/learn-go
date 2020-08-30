@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	urlchecker.Urlchecker()
+	urlchecker.Slowchecker()
 }
