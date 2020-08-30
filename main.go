@@ -2,28 +2,20 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
-	channel := make(chan bool)
-	people := [2]string{"foo", "bar"}
+	channel := make(chan string)
+	people := [5]string{"foo", "bar", "vvv", "kkk", "sss"}
 
 	for _, person := range people {
 		go isPerson(person, channel)
 	}
-
-	fmt.Println(<-channel)
-	fmt.Println(<-channel)
+	for i := 0; i < len(people); i++ {
+		fmt.Println(<-channel)
+	}
 }
 
-func isPerson(person string, channel chan bool) {
-
-	if person == "foo" {
-		time.Sleep(time.Second * 5)
-		channel <- true
-	} else {
-		channel <- false
-	}
-
+func isPerson(person string, channel chan string) {
+	channel <- person + "'s send from channel"
 }
