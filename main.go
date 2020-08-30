@@ -6,14 +6,24 @@ import (
 )
 
 func main() {
-	go count("foo", 10)
-	go count("bar", 5)
-	count("uuu", 5)
+	channel := make(chan bool)
+	people := [2]string{"foo", "bar"}
+
+	for _, person := range people {
+		go isPerson(person, channel)
+	}
+
+	fmt.Println(<-channel)
+	fmt.Println(<-channel)
 }
 
-func count(name string, len int) {
-	for i := 0; i < len; i++ {
-		fmt.Println(name, "count", i)
-		time.Sleep(time.Second)
+func isPerson(person string, channel chan bool) {
+	time.Sleep(time.Second * 5)
+
+	if person == "foo" {
+		channel <- true
+	} else {
+		channel <- false
 	}
+
 }
