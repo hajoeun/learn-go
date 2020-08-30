@@ -1,13 +1,18 @@
 package urlchecker
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 )
 
+type result struct {
+	url    string
+	status int
+}
+
 // Urlchecker is URL checker
 func Urlchecker() {
+	channel := make(chan result)
 	urls := []string{
 		"https://www.naver.com",
 		"https://www.youtube.com",
@@ -17,29 +22,20 @@ func Urlchecker() {
 		"https://www.google.com",
 		"https://www.brunch.co.kr",
 	}
-	results := make(map[string]string)
 
 	for _, url := range urls {
-		result := "OK"
-		err := hitURL(url)
-		if err != nil {
-			result = "FAILED"
-		}
-		results[url] = result
+		go hitURL(url, channel)
 	}
 
-	for url, result := range results {
-		fmt.Println(url, result)
+	for i := 0; i < len(urls); i++ {
+		fmt.Println("Wating for " + urls[i])
+		fmt.Println(<-channel)
 	}
 }
 
-var errRequestFailed = errors.New("Request Failed")
-
-func hitURL(url string) error {
+func hitURL(url string, channel chan result) {
 	fmt.Println("Checking:", url)
-	resp, err := http.Get(url)
-	if err != nil || resp.StatusCode >= 400 {
-		return errRequestFailed
-	}
-	return nil
+	resp, _ := http.Get(url)
+
+	channel <- result{url: url, status: resp.StatusCode}
 }
