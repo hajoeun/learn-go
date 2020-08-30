@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/joeunha/learn-go/syntax"
+	"github.com/joeunha/learn-go/urlchecker"
 )
 
 func main() {
-	syntax.Channel()
+	urlchecker.Urlchecker()
 }
