@@ -1,15 +1,15 @@
-package urlchecker
+package nomadcoder
 
 import (
 	"errors"
 	"fmt"
 	"net/http"
 
-	"github.com/joeunha/learn-go/urlchecker/types"
+	"github.com/joeunha/learn-go/nomadcoder/types"
 )
 
-// Slowchecker testing normal function
-func Slowchecker() {
+// SlowChecker testing normal function
+func SlowChecker() {
 
 	urls := []string{
 		"https://www.naver.com",

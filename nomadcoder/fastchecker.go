@@ -1,14 +1,14 @@
-package urlchecker
+package nomadcoder
 
 import (
 	"fmt"
 	"net/http"
 
-	"github.com/joeunha/learn-go/urlchecker/types"
+	"github.com/joeunha/learn-go/nomadcoder/types"
 )
 
-// Fastchecker testing channel and goroutine
-func Fastchecker() {
+// FastChecker testing channel and goroutine
+func FastChecker() {
 	channel := make(chan types.Response)
 	urls := []string{
 		"https://www.naver.com",

@@ -1,7 +1,7 @@
 package main
 
-import "github.com/joeunha/learn-go/gradechecker"
+import "github.com/joeunha/learn-go/nomadcoder"
 
 func main() {
-	gradechecker.GradeChecker()
+	nomadcoder.SlowChecker()
 }

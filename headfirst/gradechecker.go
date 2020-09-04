@@ -1,4 +1,4 @@
-package gradechecker
+package headfirst
 
 import (
 	"bufio"
