@@ -1,4 +1,4 @@
-package accounts
+package nomadcoder
 
 import (
 	"errors"
