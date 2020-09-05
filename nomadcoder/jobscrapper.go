@@ -1,9 +1,11 @@
 package nomadcoder
 
 import (
+	"encoding/csv"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 
@@ -30,7 +32,26 @@ func JobScrapper() {
 		totalJobs = append(totalJobs, jobs...)
 	}
 
-	fmt.Println(totalJobs)
+	writeJobs(totalJobs)
+	fmt.Println("Done! Scrapped", len(totalJobs), "jobs")
+}
+
+func writeJobs(jobs []jobCardData) {
+	file, err := os.Create("jobs.csv")
+	checkErr(err)
+
+	w := csv.NewWriter(file)
+	defer w.Flush()
+
+	header := []string{"id", "title", "company", "location", "summary"}
+	wErr := w.Write(header)
+	checkErr(wErr)
+
+	for _, job := range jobs {
+		job := []string{job.id, job.title, job.company, job.location, job.summary}
+		jwErr := w.Write(job)
+		checkErr(jwErr)
+	}
 }
 
 func getJobs(page int) []jobCardData {
