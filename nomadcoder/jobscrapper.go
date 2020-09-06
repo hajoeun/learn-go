@@ -20,16 +20,15 @@ type jobCardData struct {
 	summary  string
 }
 
-var baseURL string = "https://kr.indeed.com/jobs?q=javascript&limit=50"
-
 // JobScrapper scrap job information
-func JobScrapper() {
+func JobScrapper(keyword string) {
+	baseURL := "https://kr.indeed.com/jobs?q=" + keyword + "&limit=50"
 	var totalJobs []jobCardData
 	ch := make(chan []jobCardData)
-	totalPages := getTotalPages()
+	totalPages := getTotalPages(baseURL)
 
 	for i := 0; i < totalPages; i++ {
-		go getJobs(i, ch)
+		go getJobs(baseURL, i, ch)
 	}
 
 	for i := 0; i < totalPages; i++ {
@@ -59,7 +58,7 @@ func writeJobs(jobs []jobCardData) {
 	}
 }
 
-func getJobs(page int, ch chan []jobCardData) {
+func getJobs(baseURL string, page int, ch chan []jobCardData) {
 	var jobs []jobCardData
 	c := make(chan jobCardData)
 	pageURL := baseURL + "&start=" + strconv.Itoa(page*50)
@@ -89,9 +88,9 @@ func getJobs(page int, ch chan []jobCardData) {
 func extractJob(card *goquery.Selection, c chan jobCardData) {
 	id, _ := card.Attr("data-jk")
 	title, _ := card.Find("a.jobtitle").Attr("title")
-	company := cleanString(card.Find(".sjcl .company").Text())
-	location := cleanString(card.Find(".sjcl .location").Text())
-	summary := cleanString(card.Find(".summary").Text())
+	company := CleanString(card.Find(".sjcl .company").Text())
+	location := CleanString(card.Find(".sjcl .location").Text())
+	summary := CleanString(card.Find(".summary").Text())
 	c <- jobCardData{
 		id:       id,
 		title:    title,
@@ -101,11 +100,12 @@ func extractJob(card *goquery.Selection, c chan jobCardData) {
 	}
 }
 
-func cleanString(str string) string {
+// CleanString is clean string
+func CleanString(str string) string {
 	return strings.Join(strings.Fields(strings.TrimSpace(str)), " ")
 }
 
-func getTotalPages() int {
+func getTotalPages(baseURL string) int {
 	pages := 0
 	res, err := http.Get(baseURL)
 
