@@ -1,7 +1,7 @@
 package main
 
-import "github.com/joeunha/learn-go/nomadcoder"
+import "github.com/joeunha/learn-go/connectdb"
 
 func main() {
-	nomadcoder.WebServer()
+	connectdb.Mongo()
 }
