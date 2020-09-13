@@ -20,4 +20,13 @@ func FormattingVerb() {
 	fmt.Printf("%12s | %2d\n", "Stamps", 50)
 	fmt.Printf("%12s | %2d\n", "Paper Clips", 5)
 	fmt.Printf("%12s | %2d\n", "Tape", 99)
+
+	fmt.Println("===== 소수점 정밀도 지정 =====")
+	value := 12.3456789
+	fmt.Printf("%%7.3f: %7.3f\n", value)
+	fmt.Printf("%%7.2f: %7.2f\n", value)
+	fmt.Printf("%%7.1f: %7.1f\n", value)
+	fmt.Printf("%%.1f: %.1f\n", value)
+	fmt.Printf("%%.2f: %.2f\n", value)
+
 }
