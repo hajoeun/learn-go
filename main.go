@@ -1,7 +1,7 @@
 package main
 
-import "github.com/joeunha/learn-go/connectdb"
+import "github.com/joeunha/learn-go/headfirst"
 
 func main() {
-	connectdb.Mongo()
+	headfirst.ReadFile()
 }
