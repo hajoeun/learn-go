@@ -1,7 +1,7 @@
 package main
 
-import "github.com/joeunha/learn-go/nomadcoder"
+import "./typecasting"
 
 func main() {
-	nomadcoder.WebServer()
+	typecasting.Test()
 }
