@@ -1,3 +1,4 @@
+// Package headfirst is example of Head First Go.
 package headfirst
 
 import (
@@ -12,6 +13,9 @@ import (
 )
 
 // GuessNumber is a game that guess a random of number.
+// You can call this function with max number. Then you have to guess a random number between 1 and max that you call.
+//   GuessNumber(100)
+//   I've chosen a random number between 1 and 100
 func GuessNumber(max int) {
 	rand.Seed(time.Now().UnixNano())
 	target := rand.Intn(max) + 1
